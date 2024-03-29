@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="length_units">
+        <item>inch</item>
+        <item>foot</item>
+        <item>yard</item>
+        <item>mile</item>
+        <item>pound</item>
+        <item>ounce</item>
+        <item>ton</item>
+        <item>celsius</item>
+        <item>fahrenheit</item>
+        <item>kelvin</item>
+    </string-array>
+    <string name="fail">Please choose compatible conversion units</string>
+</resources>
