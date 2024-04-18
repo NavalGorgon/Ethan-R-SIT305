@@ -16,47 +16,36 @@ import com.example.task41p.data.DatabaseHelper;
 
 import java.util.Calendar;
 
-public class EditTask extends AppCompatActivity {
+public class CreateTask extends AppCompatActivity {
 
     EditText TitleInput;
     EditText DetailsInput;
     String dateString;
+    Button dateButton;
     Button saveButton;
     Button cancelButton;
-    Button dateButton;
-    Button deleteButton;
-    DatabaseHelper db;
     DatePickerDialog datePickerDialog;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_edit_task);
-
-        //Bundle extras
-        Bundle extras = getIntent().getExtras();
-        String titleExtra = extras.getString("Title");
-        String detailsExtra = extras.getString("Details");
-        String dateExtra = extras.getString("Date");
+        setContentView(R.layout.activity_create_task);
 
         //Set Values
-        TitleInput = findViewById(R.id.editTaskTitle);
-        DetailsInput = findViewById(R.id.editTaskDesc);
+        TitleInput = findViewById(R.id.createTaskTitle);
+        DetailsInput = findViewById(R.id.createTaskDesc);
         dateString = "00000000";
-        saveButton = findViewById(R.id.editSave);
-        cancelButton = findViewById(R.id.editCancel);
-        deleteButton = findViewById(R.id.deleteButton);
+        saveButton = findViewById(R.id.createSave);
+        cancelButton = findViewById(R.id.createCancel);
         db = new DatabaseHelper(this);
-
-        TitleInput.setText(titleExtra);
-        DetailsInput.setText(detailsExtra);
 
 
 
         //Initiate Date picker
         initDatePicker();
-        dateButton = findViewById(R.id.editDatePicker);
+        dateButton = findViewById(R.id.createDatePicker);
         dateButton.setText(getTodaysDate());
 
         //Open Date Picker
@@ -73,14 +62,14 @@ public class EditTask extends AppCompatActivity {
 
                 String title = TitleInput.getText().toString();
                 String details = DetailsInput.getText().toString();
-                long result = db.updateTask(new Task(title, details, dateString), titleExtra);
+                long result = db.insertTask(new Task(title, details, dateString));
                 if (result > 0)
                 {
-                    Toast.makeText(EditTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(EditTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
                 }
 
                 finish();
@@ -94,16 +83,8 @@ public class EditTask extends AppCompatActivity {
                 finish();
             }
         });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                db.deleteTask(titleExtra);
-                finish();
-            }
-        });
     }
-    //region Date Picker Methods
+//region Date Picker Methods
     //Return today's date as a string
     private String getTodaysDate()
     {

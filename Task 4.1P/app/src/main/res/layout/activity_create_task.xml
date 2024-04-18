@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditTask">
+    tools:context=".CreateTask">
 
     <EditText
-        android:id="@+id/editTaskTitle"
+        android:id="@+id/createTaskTitle"
         android:layout_width="338dp"
         android:layout_height="48dp"
         android:layout_marginStart="36dp"
@@ -19,13 +19,13 @@
         android:inputType="text"
         android:text="Title"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTaskDesc"
+        app:layout_constraintBottom_toTopOf="@+id/createTaskDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTaskDesc"
+        android:id="@+id/createTaskDesc"
         android:layout_width="337dp"
         android:layout_height="135dp"
         android:layout_marginStart="37dp"
@@ -37,10 +37,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTaskTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/createTaskTitle" />
 
     <Button
-        android:id="@+id/editSave"
+        android:id="@+id/createSave"
         android:layout_width="150dp"
         android:layout_height="59dp"
         android:layout_marginEnd="16dp"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/editCancel"
+        android:id="@+id/createCancel"
         android:layout_width="150dp"
         android:layout_height="59dp"
         android:layout_marginStart="15dp"
@@ -58,11 +58,11 @@
         android:layout_marginBottom="17dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editSave"
+        app:layout_constraintEnd_toStartOf="@+id/createSave"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/editDatePicker"
+        android:id="@+id/createDatePicker"
         style="?android:spinnerStyle"
         android:layout_width="339dp"
         android:layout_height="54dp"
@@ -74,19 +74,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTaskDesc" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="150dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="#F44336"
-        android:text="DELETE"
-        app:layout_constraintBottom_toTopOf="@+id/editSave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/createTaskDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
