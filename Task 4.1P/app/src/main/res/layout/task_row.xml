@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="331dp"
-        android:layout_height="160dp"
+        android:layout_width="333dp"
+        android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
@@ -19,41 +19,45 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="95dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="218dp"
-                android:layout_height="match_parent"
+                android:layout_height="85dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/taskTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/taskDate"
                     android:layout_width="match_parent"
-                    android:layout_height="79dp"
+                    android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="110dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="21dp" />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:text="Button" />
-
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    app:cornerRadius="15dp" />
             </LinearLayout>
 
         </LinearLayout>

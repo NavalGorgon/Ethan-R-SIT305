@@ -43,7 +43,7 @@ public class EditTask extends AppCompatActivity {
         //Set Values
         TitleInput = findViewById(R.id.editTaskTitle);
         DetailsInput = findViewById(R.id.editTaskDesc);
-        dateString = "00000000";
+        dateString = dateExtra;
         saveButton = findViewById(R.id.editSave);
         cancelButton = findViewById(R.id.editCancel);
         deleteButton = findViewById(R.id.deleteButton);
@@ -57,7 +57,9 @@ public class EditTask extends AppCompatActivity {
         //Initiate Date picker
         initDatePicker();
         dateButton = findViewById(R.id.editDatePicker);
-        dateButton.setText(getTodaysDate());
+        dateButton.setText(makeDateString(Integer.parseInt(dateExtra.substring(6)),
+                Integer.parseInt(dateExtra.substring(4,6)),
+                Integer.parseInt(dateExtra.substring(0,4))));
 
         //Open Date Picker
         dateButton.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +75,23 @@ public class EditTask extends AppCompatActivity {
 
                 String title = TitleInput.getText().toString();
                 String details = DetailsInput.getText().toString();
-                long result = db.updateTask(new Task(title, details, dateString), titleExtra);
-                if (result > 0)
-                {
-                    Toast.makeText(EditTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(EditTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
-                }
+                if(!title.isEmpty()) {
+                    if (title.equals(titleExtra) || (!db.checkTask(title))) {
+                        long result = db.updateTask(new Task(title, details, dateString), titleExtra);
+                        if (result > 0) {
+                            Toast.makeText(EditTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(EditTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
+                        }
 
-                finish();
+                        finish();
+                    }else{
+                        Toast.makeText(EditTask.this, "Task already exists", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(EditTask.this, "Title is required", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

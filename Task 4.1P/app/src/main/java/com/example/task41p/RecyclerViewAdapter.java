@@ -40,7 +40,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Task task = taskList.get(position);
         holder.taskTitle.setText(taskList.get(position).getTitle());
         //Convert date to string
-        holder.taskDate.setText(taskList.get(position).getDate());
+        holder.taskDate.setText(makeDateString(Integer.parseInt(taskList.get(position).getDate().substring(0,4)),
+                Integer.parseInt(taskList.get(position).getDate().substring(4,6)),
+                Integer.parseInt(taskList.get(position).getDate().substring(6))));
         holder.task = task;
         holder.editButton.setText("Edit");
 

@@ -36,7 +36,7 @@ public class CreateTask extends AppCompatActivity {
         //Set Values
         TitleInput = findViewById(R.id.createTaskTitle);
         DetailsInput = findViewById(R.id.createTaskDesc);
-        dateString = "00000000";
+        dateString = getTodaysDateString();
         saveButton = findViewById(R.id.createSave);
         cancelButton = findViewById(R.id.createCancel);
         db = new DatabaseHelper(this);
@@ -62,17 +62,23 @@ public class CreateTask extends AppCompatActivity {
 
                 String title = TitleInput.getText().toString();
                 String details = DetailsInput.getText().toString();
-                long result = db.insertTask(new Task(title, details, dateString));
-                if (result > 0)
-                {
-                    Toast.makeText(CreateTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(CreateTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
-                }
+                if(!title.isEmpty()) {
+                    if (!db.checkTask(title)) {
+                        long result = db.insertTask(new Task(title, details, dateString));
+                        if (result > 0) {
+                            Toast.makeText(CreateTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CreateTask.this, "Error occurred, task not saved!", Toast.LENGTH_SHORT).show();
+                        }
 
-                finish();
+                        finish();
+                    }else{
+                        Toast.makeText(CreateTask.this, "Task already exists", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(CreateTask.this, "Title is required", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -95,6 +101,17 @@ public class CreateTask extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
         return makeDateString(day,month, year);
+    };
+    //Return dateString for SQL
+    private String getTodaysDateString()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month += 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        return setDateString(year, month, day);
     };
     //Initiate Date Picker
     private void initDatePicker()
