@@ -49,6 +49,7 @@ public class EditTask extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
         db = new DatabaseHelper(this);
 
+        //Set text for Title and Description
         TitleInput.setText(titleExtra);
         DetailsInput.setText(detailsExtra);
 
@@ -57,6 +58,7 @@ public class EditTask extends AppCompatActivity {
         //Initiate Date picker
         initDatePicker();
         dateButton = findViewById(R.id.editDatePicker);
+        //Set date to date saved in SQL
         dateButton.setText(makeDateString(Integer.parseInt(dateExtra.substring(6)),
                 Integer.parseInt(dateExtra.substring(4,6)),
                 Integer.parseInt(dateExtra.substring(0,4))));
@@ -75,9 +77,13 @@ public class EditTask extends AppCompatActivity {
 
                 String title = TitleInput.getText().toString();
                 String details = DetailsInput.getText().toString();
+                //Check if title has been put in
                 if(!title.isEmpty()) {
+                    //Check that the title is not being changed to another existing task
                     if (title.equals(titleExtra) || (!db.checkTask(title))) {
+                        //Update task in SQL
                         long result = db.updateTask(new Task(title, details, dateString), titleExtra);
+                        //Check if updated successfully
                         if (result > 0) {
                             Toast.makeText(EditTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -95,6 +101,7 @@ public class EditTask extends AppCompatActivity {
             }
         });
 
+        //Cancel out of activity
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +110,7 @@ public class EditTask extends AppCompatActivity {
             }
         });
 
+        //Delete task from SQL
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +119,9 @@ public class EditTask extends AppCompatActivity {
             }
         });
     }
+
+
+
     //region Date Picker Methods
     //Return today's date as a string
     private String getTodaysDate()
@@ -197,6 +208,7 @@ public class EditTask extends AppCompatActivity {
         return year + toDoubleDigits(month) + toDoubleDigits(day);
     }
 
+    //Convert day or month to two digits
     private String toDoubleDigits(int num)
     {
         if(num < 10)
@@ -208,6 +220,7 @@ public class EditTask extends AppCompatActivity {
             return Integer.toString(num);
         }
     }
+
     //Open the date picker
     public void openDatePicker()
     {

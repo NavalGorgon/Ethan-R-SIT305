@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Declare variables
     Button buttonCreate;
     DatabaseHelper db;
     RecyclerView recyclerView;
@@ -33,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        //Declares
+        //Assign Variables
         buttonCreate =findViewById(R.id.button);
         db = new DatabaseHelper(this);
+
+        //Set recyclerview
         recyclerView = findViewById(R.id.recyclerView);
         recyclerViewAdapter = new RecyclerViewAdapter(taskList, this);
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Open CreateTask Activity
                 Intent editTask = new Intent(MainActivity.this, CreateTask.class);
                 startActivity(editTask);
             }
@@ -58,20 +62,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //Update recycler upon resuming Main Activity
         refresh();
     }
 
     public void refresh()
     {
-
+        //Clear the list
         taskList.clear();
         Cursor cursor = db.fetchTask();
+
+        //Iterate SQL and refill list sorted by date
         while(cursor.moveToNext())
         {
             Task task = new Task(cursor.getString(1), cursor.getString(2), cursor.getString(3) );
             taskList.add(task);
         }
         cursor.close();
+        //Update recycler
         recyclerViewAdapter.notifyDataSetChanged();
     }
 }

@@ -37,6 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
 
+        //Assign holders
         Task task = taskList.get(position);
         holder.taskTitle.setText(taskList.get(position).getTitle());
         //Convert date to string
@@ -61,18 +62,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DatabaseHelper db;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Assign variables
             taskTitle = itemView.findViewById(R.id.taskTitle);
             taskDate = itemView.findViewById(R.id.taskDate);
             editButton = itemView.findViewById(R.id.button2);
             db = new DatabaseHelper(context);
 
 
-            Log.wtf("here", "Here");
-
+            //Assign on click listener for the edit button in each item
             itemView.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
+                    //Open the Edit Task activity and push the information from the item selected
                     Intent intent = new Intent(context, EditTask.class);
                     intent.putExtra("Title", task.getTitle());
                     intent.putExtra("Details", task.getDetails());

@@ -62,9 +62,13 @@ public class CreateTask extends AppCompatActivity {
 
                 String title = TitleInput.getText().toString();
                 String details = DetailsInput.getText().toString();
+                //Check if there is a title put in
                 if(!title.isEmpty()) {
+                    //Check if there is an existing task with that title
                     if (!db.checkTask(title)) {
+                        //Insert new task into SQLite
                         long result = db.insertTask(new Task(title, details, dateString));
+                        //Check if task was adding successfully
                         if (result > 0) {
                             Toast.makeText(CreateTask.this, "Task saved!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -82,6 +86,8 @@ public class CreateTask extends AppCompatActivity {
             }
         });
 
+
+        //Close out when pressing cancel
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,6 +193,7 @@ public class CreateTask extends AppCompatActivity {
         return year + toDoubleDigits(month) + toDoubleDigits(day);
     }
 
+    //Change day or month to two digits for saving in SQL
     private String toDoubleDigits(int num)
     {
         if(num < 10)
