@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Task 7.1P</string>
+    <string name="newButton">CREATE NEW ADVERT</string>
+    <string name="showButton">SHOW ALL LOST AND FOUND ITEMS</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone:</string>
+    <string name="description">Description:</string>
+    <string name="date">Date:</string>
+    <string name="location">Location:</string>
+    <string name="save">SAVE</string>
+    <string name="lost">Lost</string>
+    <string name="found">Found</string>
+</resources>
