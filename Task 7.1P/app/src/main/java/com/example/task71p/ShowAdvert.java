@@ -3,6 +3,8 @@ package com.example.task71p;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +27,21 @@ public class ShowAdvert extends AppCompatActivity {
     List<Advert> advertList = new ArrayList<>();
     DatabaseHelper db;
 
+    Button cancelButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_advert);
+
+        cancelButton = findViewById(R.id.showCancel);
+        //Cancel button
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //Set recyclerview
         recyclerView = findViewById(R.id.recyclerView);
@@ -43,6 +55,7 @@ public class ShowAdvert extends AppCompatActivity {
         refresh();
 
     }
+
 
     @Override
     protected void onResume() {

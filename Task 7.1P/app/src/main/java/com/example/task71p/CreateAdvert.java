@@ -29,6 +29,7 @@ public class CreateAdvert extends AppCompatActivity {
     RadioButton rb;
     RadioGroup radioGroup;
     Button saveButton;
+    Button createCancel;
     DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class CreateAdvert extends AppCompatActivity {
         createDetails = findViewById(R.id.createDetails);
         createDate = findViewById(R.id.createDate);
         createLocation = findViewById(R.id.createLocation);
+        createCancel = findViewById(R.id.createCancel);
         saveButton = findViewById(R.id.saveButton);
 
         radioGroup = findViewById(R.id.radioGroup);
@@ -57,6 +59,13 @@ public class CreateAdvert extends AppCompatActivity {
             }
         });
 
+        //Cancel button
+        createCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //Set on click listener for saveButton
         saveButton.setOnClickListener(new View.OnClickListener() {

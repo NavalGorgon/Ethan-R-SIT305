@@ -10,10 +10,10 @@
     <Button
         android:id="@+id/saveButton"
         android:layout_width="0dp"
-        android:layout_height="69dp"
+        android:layout_height="40dp"
         android:layout_marginStart="99dp"
         android:layout_marginEnd="99dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/save"
         app:cornerRadius="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -200,5 +200,18 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/createCancel"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="16dp"
+        android:text="CANCEL"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

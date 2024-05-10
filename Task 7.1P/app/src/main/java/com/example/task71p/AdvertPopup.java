@@ -34,6 +34,7 @@ public class AdvertPopup extends AppCompatActivity {
     TextView popPhone;
     TextView popDetails;
     Button deleteButton;
+    Button cancelButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class AdvertPopup extends AppCompatActivity {
         popLoc = findViewById(R.id.popLoc);
         popPhone = findViewById(R.id.popPhone);
         popDetails = findViewById(R.id.popDetails);
+        cancelButton = findViewById(R.id.popCancel);
         deleteButton = findViewById(R.id.deleteButton);
         db = new DatabaseHelper(this);
 
@@ -59,6 +61,14 @@ public class AdvertPopup extends AppCompatActivity {
         popLoc.setText(advert.getType() + " at " + advert.getLocation());
         popPhone.setText("Contact at: " + advert.getPhone());
         popDetails.setText(advert.getDetails());
+
+        //Cancel button
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
